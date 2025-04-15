@@ -3,6 +3,50 @@
 # LAB 8 - Wind Turbine Placement OOP  #
 #######################################
 
+"""
+APS106 – Lab 8: 風力タービン配置の検証（オブジェクト指向）
+
+目的:
+- クラスの定義とメソッドの実装
+- オブジェクトを用いたデータ構造の操作
+- ファイルからの情報読み取り
+- 手続き型とオブジェクト指向の違いを理解
+
+提出物:
+- lab8.py（以下のクラスと関数を実装）
+
+クラスとそのメソッド:
+
+1. Rectangle クラス
+- 属性: bottom_left, top_right（どちらも Point 型）
+- メソッド:
+  - __init__, __str__, overlap（提供済み）
+  - move: 長方形の中心座標を指定分だけ移動（新しい Point を作らずに変更）
+
+2. WindTurbine クラス
+- 属性:
+  - id_number（タービンID）
+  - placement（Rectangle オブジェクト）
+  - overlapping_turbines（重なっているタービンのリスト）
+- メソッド:
+  - __init__, __str__（提供済み）
+  - move: Rectangle の move を使って移動し、overlapping_turbines を空にする
+  - overlap: 他の WindTurbine との重なりを判定（Rectangle.overlap 使用）
+  - validate_placement: 他の WindTurbine と重なっているかチェックし、重なっているものをリストに追加
+
+関数:
+
+1. load_wind_turbine_placements(filename)
+- CSVファイルを読み取り、WindTurbine オブジェクトのリストを作成して返す
+- ヘッダーはスキップ、各行から属性を読み取ってオブジェクト作成
+
+2. validate_all_wind_turbine_placements(turbine_list)
+- 各 WindTurbine の validate_placement を呼び出す
+- 重なっているタービンの数と ID のリストを返す
+- IDリストは順不同でOK
+
+"""
+
 import csv
 
 class Point:
