@@ -3,6 +3,45 @@
 # LAB 7 - Image processing and corner detection #
 #################################################
 
+"""
+APS106 – Lab 7: 画像処理によるコーナー検出
+
+目的:
+- リスト・タプル・辞書を使って画像データを操作
+- 画像処理アルゴリズム（コーナー検出）の簡易実装
+
+提出物:
+- lab7.py（以下の関数を実装）
+
+関数一覧:
+1. convert_rgb_to_gs(rgb_pixels)
+   - RGB画像をグレースケールに変換
+   - grayscale = round(0.3*R + 0.59*G + 0.11*B)
+
+2. dot_product(v1, v2)
+   - 2つの数値ベクトルの内積を計算
+
+3. extract_2D_img_segment(img, w, h, center, N)
+   - 指定した座標を中心とした NxN 範囲のピクセルを取り出す
+
+4. kernel_filter(kernel, img, width, height)
+   - カーネルを用いて画像にフィルタ処理を施す（畳み込み処理）
+   - 画像端のピクセルには0を代入
+
+5. non_maxima_suppression(corners, min_distance)
+   - 強度が近く重複しているコーナーを間引く
+   - 距離が `min_distance` 未満の弱いコーナーは削除
+
+
+画像の扱いについて:
+- 画像は1次元タプルとして与えられ、横幅×高さのグリッド構造を仮定
+- 座標 (x, y) に対応する1Dインデックス: `index = y * width + x`
+
+その他:
+- Harris Corner Detector を用いてコーナー候補を得る
+- 最終的にNon-Maxima Suppressionで不要な候補を除去
+"""
+
 from operator import itemgetter
 
 ################################################
